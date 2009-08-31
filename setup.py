@@ -1,26 +1,14 @@
 from setuptools import setup, find_packages
-import sys, os
 
-version = '0.1'
-
-setup(name='CoScheduler',
-      version=version,
-      description="Coroutine based task scheduler and simulation environment.",
-      long_description="""\
-""",
-      classifiers=[], # Get strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
-      keywords='',
-      author='Alice Bevan-McGregor',
-      author_email='alice@gothcandy.com',
-      url='',
-      license='MIT',
-      packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
-      include_package_data=True,
-      zip_safe=True,
-      install_requires=[
-          # -*- Extra requirements: -*-
-      ],
-      entry_points="""
-      # -*- Entry points: -*-
-      """,
+setup(
+          name = "CoScheduler",
+          version = "0.1",
+          description = "",
+          author = "",
+          author_email = "amcgregor@topfloor.ca",
+          license = "MIT",
+          packages = find_packages(exclude=['tests', 'examples']),
+          include_package_data = False,
+          zip_safe = True,
+          install_requires = []
       )
