@@ -1,5 +1,6 @@
 # encoding: utf-8
 
+from cos.routines.socket                        import FileReadWait, FileWriteWait
 
 
 __all__ = ['Socket']

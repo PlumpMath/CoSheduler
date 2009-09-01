@@ -80,15 +80,34 @@ class KillTask(Routine):
         scheduler.exit(scheduler[self.task])
 
 
-class WaitForTask(Routine):
-    def __init__(self, task):
-        self.task = task
+class WaitBase(Routine):
+    queue = 'core'
+    kind = None
+    
+    def __init__(self, reference):
+        self.reference = reference
     
     def handle(self, scheduler, task):
-        if self.task not in scheduler.queue['core']['deathwatch']:
-            scheduler.queue['core']['deathwatch'][self.task] = []
+        if self.reference not in scheduler.queue.get(self.queue).get(self.kind):
+            scheduler.queue.get(self.queue).get(self.kind)[self.reference] = []
         
-        scheduler.queue['core']['deathwatch'][self.task].append(task.id)
+        scheduler.queue.get(self.queue).get(self.kind)[self.reference].append(task.id)
 
 
-ResumeTask = None
+class WaitForTask(WaitBase):
+    kind = 'deathwatch'
+
+
+class GetQueue(Routine):
+    def __init__(self, queue, kind, reference=None):
+        self.queue = queue
+        self.kind = kind
+        self.reference = reference
+    
+    def handle(self, scheduler, task):
+        if not reference:
+            task.messages.put(scheduler.queue.get(self.queue).get(self.kind))
+            return
+        
+        task.messages.put(scheduler.queue.get(self.queue).get(self.kind).get(self.reference))
+    

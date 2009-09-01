@@ -131,6 +131,8 @@ class Scheduler(dict):
         now = datetime.now()
         now_ = now + ( timedelta() if self.delays.empty else ( sum(self.delays.queue, timedelta()) / len(self.delays.queue) ) )
         
+        log.debug('Latency average: %r', 0 if self.delays.empty else sum(self.delays.queue, timedelta()) / len(self.delays.queue))
+        
         # Sort by scheduled time.
         _, next = self.queue['core']['schedule'].keys(), None
         _.sort()
