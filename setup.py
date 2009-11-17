@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
           name = "CoScheduler",
-          version = "0.1",
+          version = "0.2",
           description = "A coroutine-based task scheduler and simulation framework.",
           author = "Alice Bevan-McGregor",
           author_email = "alice@gothcandy.com",
